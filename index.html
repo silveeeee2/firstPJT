@@ -10,13 +10,14 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
+            color: #333;
         }
 
         header {
             background-color: #333;
             color: #fff;
             text-align: center;
-            padding: 1em;
+            padding: 2em;
         }
 
         nav {
@@ -38,6 +39,13 @@
 
         section {
             padding: 2em;
+            margin: 2em 0;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            color: #333;
         }
 
         footer {
@@ -49,12 +57,30 @@
             bottom: 0;
             width: 100%;
         }
+
+        form {
+            margin-bottom: 1em;
+        }
+
+        #messages {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .message {
+            border: 1px solid #ddd;
+            margin-bottom: 0.5em;
+            padding: 1em;
+            background-color: #f9f9f9;
+        }
     </style>
 </head>
 <body>
 
     <header>
         <h1>Your Website</h1>
+        <p>A Beautiful and Responsive Website with a Message Board</p>
     </header>
 
     <nav>
@@ -63,17 +89,18 @@
             <li><a href="#about">About</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="#board">Message Board</a></li>
         </ul>
     </nav>
 
     <section id="home">
         <h2>Welcome to Your Website</h2>
-        <p>This is a simple website template with a clean design.</p>
+        <p>This is a beautiful and responsive website template. Customize it as per your needs.</p>
     </section>
 
     <section id="about">
         <h2>About Us</h2>
-        <p>Write something about your company or yourself here.</p>
+        <p>Write something about your company or yourself here. Highlight your strengths and values.</p>
     </section>
 
     <section id="services">
@@ -87,12 +114,40 @@
 
     <section id="contact">
         <h2>Contact Us</h2>
-        <p>Provide your contact information or a contact form here.</p>
+        <p>Provide your contact information or a contact form here. We would love to hear from you!</p>
+    </section>
+
+    <section id="board">
+        <h2>Message Board</h2>
+        <form id="messageForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            <br>
+            <label for="message">Message:</label>
+            <textarea id="message" rows="4" required></textarea>
+            <br>
+            <button type="submit">Post Message</button>
+        </form>
+        <ul id="messages"></ul>
     </section>
 
     <footer>
         <p>&copy; 2023 Your Website. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.getElementById('messageForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const message = document.getElementById('message').value;
+            const messagesList = document.getElementById('messages');
+            const li = document.createElement('li');
+            li.className = 'message';
+            li.innerHTML = `<strong>${name}:</strong> ${message}`;
+            messagesList.appendChild(li);
+            this.reset();
+        });
+    </script>
 
 </body>
 </html>
